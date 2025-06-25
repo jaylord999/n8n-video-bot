@@ -2,12 +2,11 @@ FROM n8nio/n8n:latest
 
 USER root
 
-# Install yt-dlp and ffmpeg
-RUN apt-get update && \
-    apt-get install -y ffmpeg curl python3-pip && \
-    pip install yt-dlp
+# Install ffmpeg, curl, python3, pip, and yt-dlp using Alpine's apk
+RUN apk update && \
+    apk add --no-cache ffmpeg curl python3 py3-pip && \
+    pip3 install --no-cache-dir yt-dlp
 
 USER node
 
-# Set default working directory
 WORKDIR /home/node
